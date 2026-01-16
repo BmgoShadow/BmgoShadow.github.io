@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blockman Shadow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0f0f12;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      opacity: 0.9;
+    }
+
+    /* Loading bar container */
+    .loading-container {
+      width: 260px;
+      height: 10px;
+      background: #2a2a2f;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    /* Loading bar */
+    .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #6a5cff, #9a8cff);
+      transition: width 0.2s;
+    }
+
+    .percent {
+      margin-top: 10px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Blockman Shadow — v1.0.0</h1>
+
+  <div class="loading-container">
+    <div class="loading-bar" id="bar"></div>
+  </div>
+  <div class="percent" id="percent">0%</div>
+
+  <script>
+    let progress = 0;
+    const bar = document.getElementById("bar");
+    const percent = document.getElementById("percent");
+
+    const loader = setInterval(() => {
+      progress += Math.floor(Math.random() * 6) + 1;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(loader);
+        percent.textContent = "Loaded!";
+      }
+      bar.style.width = progress + "%";
+      percent.textContent = progress + "%";
+    }, 120);
+  </script>
+
+</body>
+</html>
